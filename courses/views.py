@@ -89,8 +89,13 @@ class ToggleMaterialCompletionView(APIView):
         )
 
         if not created:
-            # row already existed -> this call is toggling it OFF
             completion.delete()
-            return Response({'completed': False})
+            return Response({
+                "message": "Material marked as incomplete",
+                "completed": False
+            })
 
-        return Response({'completed': True})
+        return Response({
+            "message": "Material marked as complete",
+            "completed": True
+        })
